@@ -26,3 +26,33 @@ Posteriormente, cargamos los datos del archivo llamado **cancer_seno** y le asig
 ```r
 ca_mama <-read.csv("cancer_seno.csv", header = TRUE)
 ```
+## Exploración de base de datos. 
+Una vez cargada la base de datos exploramos su estructura con la función `str` "structure" y observamos que la base de datos contiene **5 variables** y **830 observaciones**. De igual manera procedo a cambiar el nombre de las variables al español con la función `names`.
+
+```r
+str(ca_mama)
+```
+
+```
+## 'data.frame':	830 obs. of  5 variables:
+##  $ Age     : int  67 58 28 57 76 42 36 60 54 52 ...
+##  $ Shape   : int  3 4 1 1 1 2 3 2 1 3 ...
+##  $ Margin  : int  5 5 1 5 4 1 1 1 1 4 ...
+##  $ Density : int  3 3 3 3 3 3 2 2 3 3 ...
+##  $ Severity: int  1 1 0 1 1 1 0 0 0 0 ...
+```
+
+```r
+names(ca_mama)<- c("edad", "forma", "margen", "dens", "sev")
+```
+Una vez importada la base, hay que identificar si hay variables que faltan (datos perdidos), lo anterior lo hacemos con `is.na`, que hace parte del paquete **{base}**, en conjunto con la función de la familia `apply`. Con el resultado podemos concluir que no tenemos datos perdidos en mi data frame. 
+
+```r
+sapply(ca_mama,function(x) sum(is.na(x)))
+```
+
+```
+##   edad  forma margen   dens    sev 
+##      0      0      0      0      0
+```
+Hacemos la tabla de las variables que hacen parte de la base de datos donde se explica que tipo tienen en R y el tipo de variable así como sus unidades.

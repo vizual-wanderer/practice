@@ -144,6 +144,23 @@ $(document).ready(function () {
 <p>Posteriormente, cargamos los datos del archivo llamado <strong>cancer_seno</strong> y le asignamos el nombre <strong>ca_mama</strong> a los datos; de esta forma se genera un objeto con el nombre gases. Dentro de R este objeto tendrá la característica de ser un dataframe.</p>
 <pre class="r"><code>ca_mama &lt;-read.csv(&quot;cancer_seno.csv&quot;, header = TRUE)</code></pre>
 </div>
+<div id="exploracion-de-base-de-datos." class="section level2">
+<h2>Exploración de base de datos.</h2>
+<p>Una vez cargada la base de datos exploramos su estructura con la función <code>str</code> “structure” y observamos que la base de datos contiene <strong>5 variables</strong> y <strong>830 observaciones</strong>. De igual manera procedo a cambiar el nombre de las variables al español con la función <code>names</code>.</p>
+<pre class="r"><code>str(ca_mama)</code></pre>
+<pre><code>## 'data.frame':    830 obs. of  5 variables:
+##  $ Age     : int  67 58 28 57 76 42 36 60 54 52 ...
+##  $ Shape   : int  3 4 1 1 1 2 3 2 1 3 ...
+##  $ Margin  : int  5 5 1 5 4 1 1 1 1 4 ...
+##  $ Density : int  3 3 3 3 3 3 2 2 3 3 ...
+##  $ Severity: int  1 1 0 1 1 1 0 0 0 0 ...</code></pre>
+<pre class="r"><code>names(ca_mama)&lt;- c(&quot;edad&quot;, &quot;forma&quot;, &quot;margen&quot;, &quot;dens&quot;, &quot;sev&quot;)</code></pre>
+<p>Una vez importada la base, hay que identificar si hay variables que faltan (datos perdidos), lo anterior lo hacemos con <code>is.na</code>, que hace parte del paquete <strong>{base}</strong>, en conjunto con la función de la familia <code>apply</code>. Con el resultado podemos concluir que no tenemos datos perdidos en mi data frame.</p>
+<pre class="r"><code>sapply(ca_mama,function(x) sum(is.na(x)))</code></pre>
+<pre><code>##   edad  forma margen   dens    sev 
+##      0      0      0      0      0</code></pre>
+<p>Hacemos la tabla de las variables que hacen parte de la base de datos donde se explica que tipo tienen en R y el tipo de variable así como sus unidades.</p>
+</div>
 
 
 
