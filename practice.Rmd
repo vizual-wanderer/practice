@@ -48,3 +48,12 @@ Una vez importada la base, hay que identificar si hay variables que faltan (dato
 sapply(ca_mama,function(x) sum(is.na(x)))
 ```
 Hacemos la tabla de las variables que hacen parte de la base de datos donde se explica que tipo tienen en R y el tipo de variable así como sus unidades.
+
+
+Histograma de edad de los pacientes en la base de datos
+```{r}
+ca_mama %>%
+  ggplot(aes(edad)) + 
+  geom_histogram()
+```
+
