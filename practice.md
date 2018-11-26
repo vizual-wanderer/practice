@@ -5,6 +5,7 @@ date: "11/10/2018"
 output: 
   html_document: 
     keep_md: yes
+  pdf_document: default
 ---
 
 
@@ -23,9 +24,11 @@ En nuestro ejercicio vamos a establecer a _priori_ como mi variable respuesta la
 
 Posteriormente, cargamos los datos del archivo llamado **cancer_seno** y le asignamos el nombre **ca_mama** a los datos; de esta forma se genera un objeto con el nombre gases. Dentro de R este objeto tendrá la característica de ser un dataframe.
 
+
 ```r
-ca_mama <-read.csv("cancer_seno.csv", header = TRUE)
+ca_mama <- read.csv(here("data", "cancer_seno.csv"), header = TRUE)
 ```
+
 ## Exploración de base de datos. 
 Una vez cargada la base de datos exploramos su estructura con la función `str` "structure" y observamos que la base de datos contiene **5 variables** y **830 observaciones**. De igual manera procedo a cambiar el nombre de las variables al español con la función `names`.
 
@@ -43,7 +46,11 @@ str(ca_mama)
 ```
 
 ```r
-names(ca_mama)<- c("edad", "forma", "margen", "dens", "sev")
+names(ca_mama) <- c("edad", 
+                    "forma", 
+                    "margen",
+                    "dens", 
+                    "sev")
 ```
 Una vez importada la base, hay que identificar si hay variables que faltan (datos perdidos), lo anterior lo hacemos con `is.na`, que hace parte del paquete **{base}**, en conjunto con la función de la familia `apply`. Con el resultado podemos concluir que no tenemos datos perdidos en mi data frame. 
 
@@ -56,3 +63,19 @@ sapply(ca_mama,function(x) sum(is.na(x)))
 ##      0      0      0      0      0
 ```
 Hacemos la tabla de las variables que hacen parte de la base de datos donde se explica que tipo tienen en R y el tipo de variable así como sus unidades.
+
+
+Histograma de edad de los pacientes en la base de datos
+
+```r
+ca_mama %>%
+  ggplot(aes(edad)) + 
+  geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](practice_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
