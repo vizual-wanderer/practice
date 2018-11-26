@@ -9,6 +9,9 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
 ```
 
 ## Introducción:
@@ -24,9 +27,11 @@ Para el presente ejercicio utilizaremos datos de mamografia y cancer de seno dis
 En nuestro ejercicio vamos a establecer a _priori_ como mi variable respuesta la presencia o no de malignidad en la biopsia de seno.
 
 Posteriormente, cargamos los datos del archivo llamado **cancer_seno** y le asignamos el nombre **ca_mama** a los datos; de esta forma se genera un objeto con el nombre gases. Dentro de R este objeto tendrá la característica de ser un dataframe.
+
 ```{r}
-ca_mama <-read.csv("cancer_seno.csv", header = TRUE)
+ca_mama <- read.csv("cancer_seno.csv", header = TRUE)
 ```
+
 ## Exploración de base de datos. 
 Una vez cargada la base de datos exploramos su estructura con la función `str` "structure" y observamos que la base de datos contiene **5 variables** y **830 observaciones**. De igual manera procedo a cambiar el nombre de las variables al español con la función `names`.
 ```{r}
